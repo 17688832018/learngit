@@ -1,0 +1,189 @@
+创建git版本库:
+$ mkdir learngit
+$ cd learngit
+$ git init
+添加到暂存区:
+$ git add readme.txt
+提交:
+$ git commit -m "提交说明"
+查看状态:
+$ git status
+查看上次修改:
+$ git diff reademe.txt
+查看工作区和版本库最新版区别
+$ git diff HEAD -- readme.txt
+查看日志
+$ git log
+$ git log --pretty=oneline
+版本 指定HEAD指针
+$ git reset --hard HEAD^
+$ git reset --hard HEAD^^
+$ git reset --hard HEAD~100
+$ git reset --hard 1094a
+查看命令日志
+$ git reflog
+查看文件
+$ cat readme.txt
+丢弃工作区修改(包括删除都可以丢弃)
+$ git checkout -- readme.txt
+丢弃暂存区修改,HEAD表示最新版本
+$ git reset HEAD readme.txt
+删除文件
+rm test.txt
+删除版本库中文件
+git rm test.txt
+git comm -m "remove test.txt"
+
+
+
+创建SSH Key,并将公钥添加到github
+$ ssh-keygen -t rsa -C "30xxxxxxx@qq.com"
+将本地learngit关联到github仓库
+git remote add origin git@github.com:git的账号/learngit.git
+查看所有远程仓库
+git remote
+修改本地和远程关联(先查看)
+git remote rm origin
+推送本地分支master内容到远程(初次用 -u关联本地master和远程master)
+git push -u origin master
+推送到远程
+git push origin master
+将远程库克隆到本地
+git clone git@github.com:176xxxxxxxx/gitkills.git
+
+
+
+分支:Git鼓励你使用分支完成某个任务，合并后再删掉分支，
+这和直接在master分支上工作效果是一样的，但过程更安全。
+查看分支
+git branch
+创建分支dev
+git branch dev
+切换到dev分支
+git checkout dev
+创建+切换到dev分支
+git checkout -b dev
+在分支做完所有命令后要切换回master
+将dev分支合并到当前分支
+git merge dev
+删除dev分支
+git branch -d dev
+合并冲突时修改后再提交
+使用 --no-ff合并分支(合并后的历史有分支)
+git merge --no-ff -m "asdf" dev
+
+保存当前工作现场(遇到优先级更高的突发事件要占用工作区了)
+git stash
+查看stash列表
+git stash list
+回到现场
+git checkout dev
+恢复现场不删除stash
+git stash apply
+删除stash
+git stash drop
+恢复并删除stash
+git stash pop
+恢复到指定stash(根据stash list的索引确定)
+git stash apply stash@{0}
+删除未被合并过的分支
+git branch -D <name>
+
+推送分支到远程
+git push origin master
+git push origin dev
+他人克隆仓库后只能看到master,获取dev到本地
+git checkout -b dev origin/dev
+他人指定本地dev分支和远程origin/dev分支的链接(创建链接后才能用git pull)
+git branch --set-upstream-to=origin/dev dev
+push推送失败的话用pull安全推送,抓取最新的origin/dev和本地dev合并(解决和他人上传的dev冲突)
+git pull
+修改冲突文件后添加 提交 push推送
+git log中 
+(HEAD -> master)表示本地
+(origin/master)表示远程
+查看本地和远程提交详情
+git log --graph --pretty=oneline --abbrev-commit
+把本地未push的分叉提交历史整理成直线
+git rebase
+
+
+标签:与commit绑定的比commit号更简介的标签版本号
+打标签:(切换到分支后)
+git tag v1.0
+查看标签(按字母顺序)
+git tag
+查看提交详情
+git log --graph --pretty=oneline --abbrev-commit
+指定commit id打标签
+git tag v0.9 cd99bf1
+查看标签详情
+git show <tagname>
+创建带有说明的标签
+git tag -a v0.1 -m "version 0.1 released" 923a989
+推送标签到远程
+git push origin v1.0
+推送所有标签
+git push origin --tags
+删除本地标签
+git tag -d v0.9
+删除远程标签
+git push origin :refs/tags/v0.9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
