@@ -96,8 +96,10 @@ git push origin dev
 git checkout -b dev origin/dev
 他人指定本地dev分支和远程origin/dev分支的链接(创建链接后才能用git pull)
 git branch --set-upstream-to=origin/dev dev
-push推送失败的话用pull安全推送,抓取最新的origin/dev和本地dev合并(解决和他人上传的dev冲突)
+push推送失败的话用pull先拉取文件查看不同,抓取最新的origin/dev和本地dev合并(解决和他人上传的dev冲突)
 git pull
+第一次push到远程库时:由于本地仓库没有readme.md文件之类的,
+git pull --rebase origin master
 修改冲突文件后添加 提交 push推送
 git log中 
 (HEAD -> master)表示本地
@@ -129,6 +131,12 @@ git push origin --tags
 git tag -d v0.9
 删除远程标签
 git push origin :refs/tags/v0.9
+克隆github上的仓库:在github上fork后,再在本地克隆下来
+git clone git@github.com:176XXXXX/bootstrap.git
+配置Git的时候，加上--global是针对当前用户起作用的，
+如果不加，那只针对当前的仓库起作用。
+
+
 
 
 
